@@ -3,6 +3,13 @@
 using namespace std;
 #include "sorting.h"
 
+#include <algorithm>
+#include <chrono>
+#include<vector>
+#include <chrono>
+using namespace std::chrono;
+// these for test the runtime
+
 //To run: ./main "type of sorting" __ __ __ __
 //Ex: ./main bubble 123 56 513 1 23
 //./main insert 123 56 513 1 23
@@ -11,6 +18,8 @@ using namespace std;
 int main(int argc, char **argv) {
   //int g[10]={8,2,5,222,3,2,6,7,3,1};
   /* change to get number from argv*/
+auto start = high_resolution_clock::now();
+
   int b[argc-2];
   for (int i=0; i<argc-2; i++){
     b[i] = atoi(argv[i+2]);
@@ -33,4 +42,8 @@ int main(int argc, char **argv) {
   }else if (strcmp(argv[1], "select")==0){
     selectionSort(b, argc-2);
   }
+auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+   cout << "Time taken by function: "
+         << duration.count() << " microseconds" << endl;
 }
